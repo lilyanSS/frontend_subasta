@@ -1,15 +1,26 @@
 import React from 'react';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Navbar from './componentes/navbar';
+import Login from './screens/Auth/Login';
 
-function App() {
+function App(props) {
   return (
-    <div className="App">
-     
-      
-      
-      
-
-    </div>
+    <Router>
+      <div className="container">
+        <Navbar />
+        <Switch>
+          <Route path='/' exact>
+          </Route>
+          <Route path='/login'>
+            <Login {...props} />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
