@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Navbar from './componentes/navbar';
 import Login from './screens/Auth/Login';
+import Profile from './screens/Perfil';
 
 function App(props) {
   return (
@@ -17,6 +18,9 @@ function App(props) {
           </Route>
           <Route path='/login'>
             <Login {...props} />
+          </Route>
+          <Route path='/perfil'>
+            <Profile {...props} />
           </Route>
         </Switch>
       </div>
