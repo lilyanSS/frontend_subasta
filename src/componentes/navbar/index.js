@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
-const Navbar = (props) => {
+const Navbar = () => {
     const data = useSelector(state => state.auth)
     return (
         <div className="navbar navbar-dark bg-primary mt-5">
@@ -13,7 +13,7 @@ const Navbar = (props) => {
                     </NavLink>
 
                     {
-                        data.session !== "" ?
+                        data.session !== null && data.session !== undefined ?
                             <div>
                                 <NavLink className="btn btn-primary mr-2" to="/admin">
                                     admin

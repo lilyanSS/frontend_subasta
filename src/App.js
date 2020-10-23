@@ -1,30 +1,13 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import Navbar from './componentes/navbar';
-import Login from './screens/Auth/Login';
-import Profile from './screens/Perfil';
+import Routers from './componentes/Routers';
+import { Provider } from 'react-redux';
+import store from "./Store/store.js";
 
-function App(props) {
+function App() {
   return (
-    <Router>
-      <div className="container">
-        <Navbar />
-        <Switch>
-          <Route path='/' exact>
-          </Route>
-          <Route path='/login'>
-            <Login {...props} />
-          </Route>
-          <Route path='/perfil'>
-            <Profile {...props} />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Routers />
+    </Provider>
   );
 }
 

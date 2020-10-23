@@ -18,7 +18,7 @@ const Login = (props) => {
         setLoading(data.isLoading);
         if (data !== undefined && data.error !== null) {
             setError(data.error)
-        } else if (data.session !== "") {
+        } else if (data.session !== null && data.session !== undefined) {
             setError("")
             props.history.push('perfil');
         }

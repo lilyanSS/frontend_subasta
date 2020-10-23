@@ -22,7 +22,7 @@ export function setLogin(email, password) {
                 dispatch({
                     type: GET_CURRENT_USER_RESPONSE,
                     session: response.data,
-                    isLoading:false
+                    isLoading: false
                 })
             })
             .catch((error) => {
@@ -31,5 +31,16 @@ export function setLogin(email, password) {
                     error: error.response.data
                 })
             })
+    }
+}
+
+export const GET_SESSION = "GET_SESSION";
+
+export const getSession = () => (dispatch) => {
+    if (localStorage.getItem('session') !== "" && localStorage.getItem('session') !== undefined) {
+        dispatch({
+            type: GET_SESSION,
+            session: localStorage.getItem('session')
+        })
     }
 }
