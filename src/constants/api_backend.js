@@ -1,5 +1,7 @@
-const API = "https://970ebfc04be1.ngrok.io"
+const API = "https://739e3ed91cc0.ngrok.io"
 
 export const ROUTES = {
-LOGIN:`${API}/users/session/`
+LOGIN:`${API}/users/session/`,
+USER: `${API}/users/personal_info/`,
+BANK_ACCOUNT: `${API}/users/bank_account/`
 };

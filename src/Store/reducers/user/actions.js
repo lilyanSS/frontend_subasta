@@ -40,7 +40,67 @@ export const getSession = () => (dispatch) => {
     if (localStorage.getItem('session') !== "" && localStorage.getItem('session') !== undefined) {
         dispatch({
             type: GET_SESSION,
-            session: localStorage.getItem('session')
+            session: JSON.parse(localStorage.getItem('session'))
         })
+    }
+}
+
+export const GET_PERSONAL_INFO_REQUEST = "GET_PERSONAL_INFO_REQUEST";
+export const GET_PERSONAL_INFO_RESPONSE = "GET_PERSONAL_INFO_RESPONSE";
+export const GET_PERSONAL_INFO_FAILURE = "GET_PERSONAL_INFO_FAILURE";
+
+export function getPersonalInfo(session) {
+    let params = { session} ;
+    let isJson = false
+    let route = validUrl(ROUTES.USER, params, isJson);
+    return dispatch => {
+        dispatch({
+            type: GET_PERSONAL_INFO_REQUEST,
+            isLoading: true
+        });
+        return axios.post(route.url, route.params, route.headers)
+            .then((response) => {
+                dispatch({
+                    type: GET_PERSONAL_INFO_RESPONSE,
+                    user: response.data,
+                    isLoading: false
+                })
+            })
+            .catch((error) => {
+                dispatch({
+                    type: GET_PERSONAL_INFO_FAILURE,
+                    error: error.response.data
+                })
+            })
+    }
+}
+
+export const GET_BACK_ACCOUNT_REQUEST = "GET_BACK_ACCOUNT_REQUEST";
+export const GET_BACK_ACCOUNT_RESPONSE = "GET_BACK_ACCOUNT_RESPONSE";
+export const GET_BACK_ACCOUNT_FAILURE = "GET_BACK_ACCOUNT_FAILURE";
+
+export function getBackAccount(session) {
+    let params = { session} ;
+    let isJson = false
+    let route = validUrl(ROUTES.BANK_ACCOUNT, params, isJson);
+    return dispatch => {
+        dispatch({
+            type: GET_BACK_ACCOUNT_REQUEST,
+            isLoading: true
+        });
+        return axios.post(route.url, route.params, route.headers)
+            .then((response) => {
+                dispatch({
+                    type: GET_BACK_ACCOUNT_RESPONSE,
+                    account: response.data,
+                    isLoading: false
+                })
+            })
+            .catch((error) => {
+                dispatch({
+                    type: GET_BACK_ACCOUNT_FAILURE,
+                    error: error.response.data
+                })
+            })
     }
 }
