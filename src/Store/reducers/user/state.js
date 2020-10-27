@@ -1,7 +1,8 @@
 import {
     GET_CURRENT_USER_REQUEST, GET_CURRENT_USER_RESPONSE, GET_CURRENT_USER_FAILURE, GET_SESSION,
     GET_PERSONAL_INFO_FAILURE, GET_PERSONAL_INFO_RESPONSE, GET_PERSONAL_INFO_REQUEST,
-    GET_BACK_ACCOUNT_FAILURE, GET_BACK_ACCOUNT_REQUEST, GET_BACK_ACCOUNT_RESPONSE
+    GET_BACK_ACCOUNT_FAILURE, GET_BACK_ACCOUNT_REQUEST, GET_BACK_ACCOUNT_RESPONSE,
+    LOGOUT_SESSION_RESPONSE
 } from "./actions";
 
 const authInitialState = {
@@ -36,6 +37,14 @@ export const auth = (state = authInitialState, action) => {
             return {
                 ...state,
                 session: action.session,
+                isLoading: false,
+                error: null
+            }
+        }
+        case LOGOUT_SESSION_RESPONSE: {
+            return {
+                ...state,
+                session: [],
                 isLoading: false,
                 error: null
             }

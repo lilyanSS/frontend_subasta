@@ -50,7 +50,7 @@ export const GET_PERSONAL_INFO_RESPONSE = "GET_PERSONAL_INFO_RESPONSE";
 export const GET_PERSONAL_INFO_FAILURE = "GET_PERSONAL_INFO_FAILURE";
 
 export function getPersonalInfo(session) {
-    let params = { session} ;
+    let params = { session };
     let isJson = false
     let route = validUrl(ROUTES.USER, params, isJson);
     return dispatch => {
@@ -80,7 +80,7 @@ export const GET_BACK_ACCOUNT_RESPONSE = "GET_BACK_ACCOUNT_RESPONSE";
 export const GET_BACK_ACCOUNT_FAILURE = "GET_BACK_ACCOUNT_FAILURE";
 
 export function getBackAccount(session) {
-    let params = { session} ;
+    let params = { session };
     let isJson = false
     let route = validUrl(ROUTES.BANK_ACCOUNT, params, isJson);
     return dispatch => {
@@ -102,5 +102,32 @@ export function getBackAccount(session) {
                     error: error.response.data
                 })
             })
+    }
+}
+
+// export const
+export const LOGOUT_SESSION_REQUEST = "LOGOUT_SESSION_REQUEST";
+export const LOGOUT_SESSION_RESPONSE = "LOGOUT_SESSION";
+
+export const LogoutSession = (session_key) => {
+    let params = { session_key };
+    let isJson = false
+    let route = validUrl(ROUTES.LOGOUT, params, isJson);
+    return dispatch => {
+        dispatch({
+            type: LOGOUT_SESSION_REQUEST,
+            isLoading: true
+        });
+        return axios.post(route.url, route.params, route.headers)
+            .then((response) => {
+                localStorage.removeItem('session');
+                dispatch({
+                    type: LOGOUT_SESSION_RESPONSE,
+                    user: null,
+                    isLoading: false
+                })
+            }).catch((error) => {
+                console.log(error, "erro")
+            });
     }
 }

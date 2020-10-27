@@ -11,13 +11,12 @@ const Profile = () => {
     const data = useSelector(state => state.auth);
     const user = useSelector(state => state.user);
     const bankAccount = useSelector(state => state.account);
-
     useEffect(() => {
         const session = data.session;
         dispatch(getPersonalInfo(session));
         dispatch(getBackAccount(session));
 
-    }, [data]);
+    }, []);
 
     return (
         <div>

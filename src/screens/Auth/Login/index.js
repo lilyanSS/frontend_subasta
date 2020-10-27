@@ -18,9 +18,9 @@ const Login = (props) => {
         setLoading(data.isLoading);
         if (data !== undefined && data.error !== null) {
             setError(data.error)
-        } else if (data.session !== null && data.session !== undefined) {
+        } else if (data.session !== null && data.session.length >0) {
             setError("")
-            props.history.push('perfil');
+            props.history.push('/');
         }
     }, [data])
 
@@ -34,7 +34,7 @@ const Login = (props) => {
             return
         }
 
-        dispatch(setLogin(email, password))
+        dispatch(setLogin(email, password));
     }
 
     const isLoading = () => {
