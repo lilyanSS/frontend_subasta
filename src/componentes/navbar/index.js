@@ -15,21 +15,19 @@ const Navbar = (props) => {
 
     return (
         <div className="navbar navbar-dark bg-primary mt-5">
-            <Link className="navbar-brand" to="/">Venta de Autos S.A</Link>
+            <Link className="navbar-brand" to='/'>Venta de Autos S.A</Link>
             <div>
                 <div className="d-flex">
-                    <NavLink className="btn btn-primary mr-2" to="/" exact >
-                        Inicio
-                    </NavLink>
+
                     {
-                        data.session !== null && data.session !== undefined  && data.session.length > 0?
+                        data.session !== null && data.session !== undefined && data.session.length > 0 ?
                             <div>
-                                <NavLink className="btn btn-primary mr-2" to="/admin">
-                                    admin
-                                 </NavLink>
                                 <NavLink className="btn btn-primary mr-2" to="/ofertas">
                                     Ofertas
                                 </NavLink>
+                                <NavLink className="btn btn-primary mr-2" to="/admin">
+                                    admin
+                                 </NavLink>
                                 <NavLink className="btn btn-primary mr-2" to="/perfil">
                                     Mi perfil
                                 </NavLink>
@@ -39,9 +37,14 @@ const Navbar = (props) => {
                                 <button className="btn btn-primary mr-2" onClick={() => Logout()}>Cerrar Sesion</button>
                             </div>
                             :
-                            <NavLink className="btn btn-primary mr-2" to="/login">
-                                Iniciar sesión
-                        </NavLink>
+                            <div>
+                                <NavLink className="btn btn-primary mr-2" to="/" exact >
+                                    Inicio
+                                </NavLink>
+                                <NavLink className="btn btn-primary mr-2" to="/login">
+                                    Iniciar sesión
+                                 </NavLink>
+                            </div>
 
                     }
 
