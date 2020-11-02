@@ -14,43 +14,45 @@ const Navbar = (props) => {
     }
 
     return (
-        <div className="navbar navbar-dark bg-primary mt-5">
-            <Link className="navbar-brand" to='/'>Venta de Autos S.A</Link>
-            <div>
-                <div className="d-flex">
+        <div>
+            <div className="navbar navbar-dark bg-primary mt-5">
+                <Link className="navbar-brand" to='/'>Venta de Autos S.A</Link>
+                <div>
+                    <div className="d-flex">
 
-                    {
-                        data.session !== null && data.session !== undefined && data.session.length > 0 ?
-                            <div>
-                                <NavLink className="btn btn-primary mr-2" to="/ofertas">
-                                    Ofertas
+                        {
+                            data.session !== null && data.session !== undefined && data.session.length > 0 ?
+                                <div>
+                                    <NavLink className="btn btn-primary mr-2" to="/ofertas">
+                                        Ofertas
                                 </NavLink>
-                                <NavLink className="btn btn-primary mr-2" to="/admin">
-                                    admin
+                                    <NavLink className="btn btn-primary mr-2" to="/admin">
+                                        admin
                                  </NavLink>
-                                <NavLink className="btn btn-primary mr-2" to="/perfil">
-                                    Mi perfil
+                                    <NavLink className="btn btn-primary mr-2" to="/perfil">
+                                        Mi perfil
                                 </NavLink>
-                                <NavLink className="btn btn-primary mr-2" to="/estadisticas">
-                                    Estadisticas
+                                    <NavLink className="btn btn-primary mr-2" to="/estadisticas">
+                                        Estadisticas
                                 </NavLink>
-                                <button className="btn btn-primary mr-2" onClick={() => Logout()}>Cerrar Sesion</button>
-                            </div>
-                            :
-                            <div>
-                                <NavLink className="btn btn-primary mr-2" to="/" exact >
-                                    Inicio
-                                </NavLink>
-                                <NavLink className="btn btn-primary mr-2" to="/login">
-                                    Iniciar sesión
-                                 </NavLink>
-                            </div>
+                                    <button className="btn btn-primary mr-2" onClick={() => Logout()}>Cerrar Sesion</button>
+                                </div>
+                                :
+                                <div>
+                                    <NavLink className="btn btn-primary mr-2" to="/" exact >
+                                        Inicio
+                            </NavLink>
+                                    <NavLink className="btn btn-primary mr-2" to="/login">
+                                        Iniciar sesión
+                            </NavLink>
+                                </div>
 
-                    }
+                        }
 
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     )
 }

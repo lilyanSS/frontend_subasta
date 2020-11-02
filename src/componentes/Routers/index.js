@@ -16,6 +16,7 @@ import Admin from '../../screens/Admin';
 function Routers(props) {
   const data = useSelector(state => state.auth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getSession())
   }, [])
@@ -30,12 +31,14 @@ function Routers(props) {
 
   return (
     <Router>
-      <div className="container">
-        <Navbar {...props} />
+      <div>
+        <div style={{ backgroundColor: "red", marginLeft: 5, marginRight: 5 }}>
+          <Navbar {...props} />
+        </div>
         <Switch>
-          <Route path='/' exact/>
+          <Route path='/' exact />
           <Route path='/login' component={Login} exact />
-          <PrivateRoutes path='/admin' component={Admin} exact/>
+          <PrivateRoutes path='/admin' component={Admin} exact />
           <PrivateRoutes path='/perfil' component={Profile} exact />
           <PrivateRoutes path='/ofertas' component={Offers} exact />
         </Switch>

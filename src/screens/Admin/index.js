@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getVehicles } from '../../Store/reducers/Admin/actions';
+import { getVehicles, resetAuction  } from '../../Store/reducers/Admin/actions';
 import { Button, Card, Modal, Row, Col, Container } from 'react-bootstrap';
 import Details from "./DetailsVehicles";
 
@@ -10,7 +10,11 @@ const Admin = () => {
     const [show, setShow] = useState(false);
     const [itemCar, setItemCar] = useState([]);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false)
+        dispatch(resetAuction())
+    };
+
     const handleShow = (item) => {
         setItemCar(item)
         setShow(true);
@@ -28,8 +32,8 @@ const Admin = () => {
                         data.length > 0 ?
                             data.map((item) => (
                                 <Col xs={6} key={item.id} >
-                                    <Card style={{marginTop:30, marginBottom:10}}>
-                                        <Card.Img variant="top" src={item.image}  style={{height:300}}/>
+                                    <Card style={{ marginTop: 30, marginBottom: 10 }}>
+                                        <Card.Img variant="top" src={item.image} style={{ height: 300 }} />
                                         <Card.Body>
                                             <Card.Title>{`${item.data.brand} ${item.model}`}</Card.Title>
                                             <Card.Text>
@@ -46,8 +50,7 @@ const Admin = () => {
                     }
                 </Row>
             </Container>
-
-            <Modal show={show} onHide={handleClose} animation={false}>
+            <Modal show={show} onHide={handleClose} animation={false}  backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>{Object.keys(itemCar).length > 0 ? `${itemCar.data.brand} ${itemCar.model}` : null}</Modal.Title>
                 </Modal.Header>

@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import {getVehicles} from '../../Store/reducers/Admin/actions';
 
+import {  getPersonalInfo } from '../../Store/reducers/user/actions';
 const Offers =()=>{
+    const data = useSelector(state => state.auth);
     const dispatch = useDispatch();
-    dispatch(getVehicles())
+    if (data.session !== null && data.session.length > 0) {
+      dispatch(getPersonalInfo(data.session))
+    }
+    
     return(
         <div>
         Offers
