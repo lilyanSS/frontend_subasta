@@ -23,16 +23,16 @@ const Navbar = (props) => {
                         {
                             data.session !== null && data.session !== undefined && data.session.length > 0 ?
                                 <div>
-                                    <NavLink className="btn btn-primary mr-2" to="/ofertas">
+                                    <NavLink className="btn btn-primary mr-2" to="/ofertas"  exact>
                                         Ofertas
                                 </NavLink>
-                                    <NavLink className="btn btn-primary mr-2" to="/admin">
+                                    <NavLink className="btn btn-primary mr-2" to="/admin"  exact>
                                         admin
                                  </NavLink>
-                                    <NavLink className="btn btn-primary mr-2" to="/perfil">
+                                    <NavLink className="btn btn-primary mr-2" to="/perfil"  exact>
                                         Mi perfil
                                 </NavLink>
-                                    <NavLink className="btn btn-primary mr-2" to="/estadisticas">
+                                    <NavLink className="btn btn-primary mr-2" to="/estadisticas"  exact>
                                         Estadisticas
                                 </NavLink>
                                     <button className="btn btn-primary mr-2" onClick={() => Logout()}>Cerrar Sesion</button>
@@ -41,10 +41,10 @@ const Navbar = (props) => {
                                 <div>
                                     <NavLink className="btn btn-primary mr-2" to="/" exact >
                                         Inicio
-                            </NavLink>
-                                    <NavLink className="btn btn-primary mr-2" to="/login">
+                                    </NavLink>
+                                    <NavLink className="btn btn-primary mr-2" to="/login" exact>
                                         Iniciar sesión
-                            </NavLink>
+                                    </NavLink>
                                 </div>
 
                         }

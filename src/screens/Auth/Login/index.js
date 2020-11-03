@@ -20,7 +20,7 @@ const Login = (props) => {
             setError(data.error)
         } else if (data.session !== null && data.session.length >0) {
             setError("")
-            props.history.push('/');
+            props.history.push('/ofertas');
         }
     }, [data])
 

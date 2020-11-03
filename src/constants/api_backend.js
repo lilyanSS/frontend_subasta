@@ -7,5 +7,8 @@ export const ROUTES = {
     LOGOUT: `${API}/users/logout/`,
     PROVIDER: `${PROVIDER_API}/vehicles/vehicles/`,
     AUCTION:  `${API}/subastas/auction/`,
+    AUCTIONS_LAUCHED:`${API}/subastas/list/`,
+    CAR_BY_ID:`${API}/subastas/car_by_id/`
+
 };
 

@@ -12,6 +12,7 @@ import Offers from '../../screens/Offers/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSession } from '../../Store/reducers/user/actions';
 import Admin from '../../screens/Admin';
+import VehiclesDetails from '../../screens/Offers/Details';
 
 function Routers(props) {
   const data = useSelector(state => state.auth);
@@ -41,6 +42,7 @@ function Routers(props) {
           <PrivateRoutes path='/admin' component={Admin} exact />
           <PrivateRoutes path='/perfil' component={Profile} exact />
           <PrivateRoutes path='/ofertas' component={Offers} exact />
+          <PrivateRoutes path='/details' component={VehiclesDetails} exact />
         </Switch>
       </div>
     </Router>
