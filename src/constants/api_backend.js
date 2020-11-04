@@ -11,4 +11,3 @@ export const ROUTES = {
     CAR_BY_ID:`${API}/subastas/car_by_id/`
 
 };
-

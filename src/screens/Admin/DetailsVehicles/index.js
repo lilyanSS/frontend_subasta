@@ -1,4 +1,3 @@
-// import React from 'react';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { PROVIDER_API } from '../../../constants/api_backend';
@@ -7,8 +6,7 @@ import { Row, Col, Container, Button } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 import { styles } from './styles';
 import { createAuction } from '../../../Store/reducers/Admin/actions';
-
-
+import moment from 'moment';
 const Details = (props) => {
     const { item } = props;
     const [basePrice, setBasePrice] = useState("");
@@ -17,23 +15,22 @@ const Details = (props) => {
     const auction = useSelector(state => state.auction);
     const [success, setSuccess] = useState("");
     const dispatch = useDispatch();
+    const [selectedDate, setSelectedDate] = useState('');
 
     const lauchAuction = () => {
-        if (!basePrice) {
-            setError("Ingrese precio base")
-        } else {
-            if (parseFloat(basePrice) < parseFloat(item.price)) {
-                setError("El precio base debe de ser mayor al precio del proveedor.")
-            } else {
-                let params = {
-                    session: user.session,
-                    base_price: parseFloat(basePrice),
-                    id_vehicle: item.id
-                }
-                dispatch(createAuction(params));
-                setError('')
-            }
+        let currentDay = moment().format('YYYY-MM-DD');
+        if (!basePrice) return setError("Ingrese precio base");
+        if (!selectedDate) return setError("Ingrese fecha subasta");
+        if (parseFloat(basePrice) < parseFloat(item.price)) return setError("El precio base debe de ser mayor al precio del proveedor.")
+        if (selectedDate < currentDay) return setError("La fecha ingresada no debe de ser menor a la fecha actual.");
+        let params = {
+            session: user.session,
+            base_price: parseFloat(basePrice),
+            id_vehicle: item.id,
+            auction_date: selectedDate
         }
+        dispatch(createAuction(params));
+        setError('')
     }
 
     useEffect(() => {
@@ -152,8 +149,21 @@ const Details = (props) => {
 
                         />
                     </Col>
+                    <Col xs={6}>
+                        <TextField
+                            style={styles.space}
+                            id="outlined-number"
+                            label="Fecha subasta"
+                            type="date"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            onChange={(base) => setSelectedDate(base.target.value)}
+                        />
+                    </Col>
                 </Row>
-                <Button variant="success" style={styles.space} onClick={() => lauchAuction()} disabled={success  ? true : false}>Lanzar a subasta</Button>
+                <Button variant="success" style={styles.space} onClick={() => lauchAuction()} disabled={success ? true : false}>Lanzar a subasta</Button>
             </Container>
 
         </div>

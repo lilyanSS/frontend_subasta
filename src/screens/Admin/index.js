@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getVehicles, resetAuction  } from '../../Store/reducers/Admin/actions';
-import { Button, Card, Modal, Row, Col, Container } from 'react-bootstrap';
+import { getVehicles, resetAuction } from '../../Store/reducers/Admin/actions';
+import { Button, Card, Modal, Row, Col, Container, ListGroup } from 'react-bootstrap';
 import Details from "./DetailsVehicles";
 
 const Admin = () => {
@@ -34,12 +34,12 @@ const Admin = () => {
                                 <Col xs={6} key={item.id} >
                                     <Card style={{ marginTop: 30, marginBottom: 10 }}>
                                         <Card.Img variant="top" src={item.image} style={{ height: 300 }} />
+                                        <Card.Header>{`${item.data.brand} ${item.model}`}</Card.Header>
+                                        <ListGroup variant="flush">
+                                            <ListGroup.Item>Proveedor: {item.data.provider}</ListGroup.Item>
+                                            <ListGroup.Item>Precio: Q{item.price}</ListGroup.Item>
+                                        </ListGroup>
                                         <Card.Body>
-                                            <Card.Title>{`${item.data.brand} ${item.model}`}</Card.Title>
-                                            <Card.Text>
-                                                <li>Proveedor: {item.data.provider}</li>
-                                                <li>Precio: Q{item.price}</li>
-                                            </Card.Text>
                                             <Button variant="primary" onClick={() => handleShow(item)} >Ver detalles</Button>
                                         </Card.Body>
                                     </Card>
@@ -50,7 +50,7 @@ const Admin = () => {
                     }
                 </Row>
             </Container>
-            <Modal show={show} onHide={handleClose} animation={false}  backdrop="static" keyboard={false}>
+            <Modal show={show} onHide={handleClose} animation={false} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>{Object.keys(itemCar).length > 0 ? `${itemCar.data.brand} ${itemCar.model}` : null}</Modal.Title>
                 </Modal.Header>

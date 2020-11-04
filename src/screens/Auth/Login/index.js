@@ -46,7 +46,7 @@ const Login = (props) => {
         )
     }
     return (
-        <div className="mt-5">
+        <div className="container mt-5">
             <h3>
                 Iniciar sesion
             </h3>

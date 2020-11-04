@@ -20,6 +20,8 @@ import EventAvailableSharpIcon from '@material-ui/icons/EventAvailableSharp';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
+import moment from 'moment';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -39,7 +41,7 @@ const VehiclesDetails = (props) => {
     useEffect(() => {
         if (state.item.car.data) {
             let data = state.item.car.data.photos;
-            let newData = []
+            let newData = [];
             data.map((it) => (
                 newData.push({
                     original: `${PROVIDER_API}${it.img}`,
@@ -116,7 +118,7 @@ const VehiclesDetails = (props) => {
                                                     <EventAvailableSharpIcon />
                                                 </Avatar>
                                             </ListItemAvatar>
-                                            <ListItemText primary="Fecha Subasta" secondary="July 20, 2014" />
+                                            <ListItemText primary="Fecha Subasta" secondary={moment(state.item.auction_date).format("ll")} />
                                         </ListItem>
                                         <ListItem>
                                             <ListItemAvatar>

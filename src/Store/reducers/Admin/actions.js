@@ -36,8 +36,8 @@ export const CREATE_AUCTION_REQUEST = "CREATE_AUCTION_REQUEST";
 export const CREATE_AUCTION_RESPONSE = "CREATE_AUCTION_RESPONSE";
 export const CREATE_AUCTION_FAILURE = "CREATE_AUCTION_FAILURE";
 
-export function createAuction({ session, base_price, id_vehicle }) {
-    let params = { session, base_price, id_vehicle };
+export function createAuction({ session, base_price, id_vehicle,auction_date }) {
+    let params = { session, base_price, id_vehicle,auction_date };
     let isJson = true;
     let route = validUrl(ROUTES.AUCTION, params, isJson);
     return dispatch => {

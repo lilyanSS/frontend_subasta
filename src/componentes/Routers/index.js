@@ -33,9 +33,7 @@ function Routers(props) {
   return (
     <Router>
       <div>
-        <div style={{ backgroundColor: "red", marginLeft: 5, marginRight: 5 }}>
-          <Navbar {...props} />
-        </div>
+        <Navbar {...props} />
         <Switch>
           <Route path='/' exact />
           <Route path='/login' component={Login} exact />
