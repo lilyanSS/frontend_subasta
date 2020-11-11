@@ -31,3 +31,43 @@ export function getList() {
             })
     }
 }
+
+export const CREATE_OFFER_REQUEST = "CREATE_OFFER_REQUEST";
+export const CREATE_OFFER_RESPONSE = "CREATE_OFFER_RESPONSE";
+export const CREATE_OFFER_FAILURE = "CREATE_OFFER_FAILURE";
+
+export function createOffer({session, price_offered, id_vehicle,user }) {
+    let params= {session, price_offered, id_vehicle,user};
+    let isJson = false
+    let route = validUrl(ROUTES.CREATE_OFFER, params, isJson);
+    return dispatch => {
+        dispatch({
+            type: CREATE_OFFER_REQUEST,
+            isLoading: true
+        });
+        return axios.post(route.url, route.params, route.headers)
+            .then((response) => {
+                dispatch({
+                    type: CREATE_OFFER_RESPONSE,
+                    offer: response.data,
+                    isLoading: false
+                })
+            })
+            .catch((error) => {
+                dispatch({
+                    type: CREATE_OFFER_FAILURE,
+                    error: error.response.data
+                })
+            })
+    }
+}
+
+export const RESET_OFFER_CREATED = "RESET_OFFER_CREATED";
+export const resetOfferCreated = () => (dispatch) => {
+    dispatch({
+        type: RESET_OFFER_CREATED,
+        offer: [],
+        error:null
+    })
+
+}

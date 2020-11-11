@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getVehicles, resetAuction } from '../../Store/reducers/Admin/actions';
 import { Button, Card, Modal, Row, Col, Container, ListGroup } from 'react-bootstrap';
 import Details from "./DetailsVehicles";
-
+import { PROVIDER_API } from '../../constants/api_backend';
 const Admin = () => {
     const dispatch = useDispatch();
     const data = useSelector(state => state.vehicles.vehicles);
@@ -31,9 +31,9 @@ const Admin = () => {
                     {
                         data.length > 0 ?
                             data.map((item) => (
-                                <Col xs={6} key={item.id} >
+                                <Col xs={4} key={item.id} >
                                     <Card style={{ marginTop: 30, marginBottom: 10 }}>
-                                        <Card.Img variant="top" src={item.image} style={{ height: 300 }} />
+                                        <Card.Img variant="top" src={`${PROVIDER_API}/${item.data.image}`} style={{ height: 300 }} />
                                         <Card.Header>{`${item.data.brand} ${item.model}`}</Card.Header>
                                         <ListGroup variant="flush">
                                             <ListGroup.Item>Proveedor: {item.data.provider}</ListGroup.Item>

@@ -2,7 +2,7 @@ import {
     GET_CURRENT_USER_REQUEST, GET_CURRENT_USER_RESPONSE, GET_CURRENT_USER_FAILURE, GET_SESSION,
     GET_PERSONAL_INFO_FAILURE, GET_PERSONAL_INFO_RESPONSE, GET_PERSONAL_INFO_REQUEST,
     GET_BACK_ACCOUNT_FAILURE, GET_BACK_ACCOUNT_REQUEST, GET_BACK_ACCOUNT_RESPONSE,
-    LOGOUT_SESSION_RESPONSE
+    LOGOUT_SESSION_RESPONSE, GET_MY_OFFERS_FAILURE, GET_MY_OFFERS_REQUEST, GET_MY_OFFERS_RESPONSE,
 } from "./actions";
 
 const authInitialState = {
@@ -108,6 +108,38 @@ export const account = (state = backAccountInitialState, action) => {
                 error: null
             }
         case GET_BACK_ACCOUNT_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.error
+            }
+        default:
+            return state;
+    }
+}
+
+const myOffersInitialState = {
+    myOffers: [],
+    error: null,
+    isLoading: false
+};
+
+export const myOffers = (state = myOffersInitialState, action) => {
+    switch (action.type) {
+        case GET_MY_OFFERS_REQUEST:
+            return {
+                ...state,
+                isLoading: true,
+                error: null
+            }
+        case GET_MY_OFFERS_RESPONSE:
+            return {
+                ...state,
+                isLoading: false,
+                myOffers: action.myOffers.data.info,
+                error: null
+            }
+        case GET_MY_OFFERS_FAILURE:
             return {
                 ...state,
                 isLoading: false,

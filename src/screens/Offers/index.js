@@ -15,6 +15,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
 
+import moment from 'moment';
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -47,8 +49,8 @@ const Offers = (props) => {
             list.length > 0 ?
               list.map((item) => (
                 <Col xs={4} key={item.id} style={{ marginTop: 20 }}>
-                  <Card className={classes.root}> 
-                    <CardActionArea onClick={()=>showCar(item)}>
+                  <Card className={classes.root}>
+                    <CardActionArea onClick={() => showCar(item)}>
                       <CardMedia
                         component="img"
                         alt="car"
@@ -62,6 +64,9 @@ const Offers = (props) => {
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                           precio base: {`Q${item.base_price}`}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          Fecha Subasta: {`${moment(item.auction_date).format("ll")}`}
                         </Typography>
                       </CardContent>
                     </CardActionArea>

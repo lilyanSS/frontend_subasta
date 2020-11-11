@@ -55,7 +55,7 @@ const Details = (props) => {
                         <Carousel.Item key={index} >
                             <img
                                 className="d-block w-100"
-                                src={`${PROVIDER_API}${photo.img}`}
+                                src={`${PROVIDER_API}/${photo.img}`}
                                 alt="First slide"
                             />
                         </Carousel.Item>
@@ -103,6 +103,16 @@ const Details = (props) => {
                             disabled
                             label="Modelo"
                             defaultValue={item.model}
+                            variant="outlined"
+                            style={styles.space}
+                        />
+
+                    </Col>
+                    <Col xs={6}>
+                        <TextField
+                            disabled
+                            label="Linea"
+                            defaultValue={item.line}
                             variant="outlined"
                             style={styles.space}
                         />

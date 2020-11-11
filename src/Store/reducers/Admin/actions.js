@@ -66,7 +66,8 @@ export const RESET_AUCTION = "RESET_AUCTION";
 export const resetAuction = () => (dispatch) => {
     dispatch({
         type: RESET_AUCTION,
-        auction: []
+        auction: [],
+        error:null
     })
 
 }

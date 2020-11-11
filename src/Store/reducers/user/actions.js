@@ -131,3 +131,34 @@ export const LogoutSession = (session_key) => {
             });
     }
 }
+
+export const GET_MY_OFFERS_REQUEST = "GET_MY_OFFERS_REQUEST";
+export const GET_MY_OFFERS_RESPONSE = "GET_MY_OFFERS_RESPONSE";
+export const GET_MY_OFFERS_FAILURE = "GET_MY_OFFERS_FAILURE";
+
+export function getMyOffers(session) {
+    let params = { session };
+    let isJson = false
+    let route = validUrl(ROUTES.MY_OFFERS, params, isJson);
+    return dispatch => {
+        dispatch({
+            type: GET_MY_OFFERS_REQUEST,
+            isLoading: true
+        });
+        return axios.post(route.url, route.params, route.headers)
+            .then((response) => {
+                dispatch({
+                    type: GET_MY_OFFERS_RESPONSE,
+                    myOffers: response.data,
+                    isLoading: false
+                })
+            })
+            .catch((error) => {
+                dispatch({
+                    type: GET_MY_OFFERS_FAILURE,
+                    error: error.response.data
+                })
+            })
+    }
+}
+

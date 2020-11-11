@@ -1,5 +1,5 @@
-const API = "http://127.0.0.1:5000";
-export const PROVIDER_API ="http://localhost:8000";
+const API = "https://subasta-bk.herokuapp.com";
+export const PROVIDER_API ="http://lilyansica.pythonanywhere.com";
 export const ROUTES = {
     LOGIN: `${API}/users/session/`,
     USER: `${API}/users/personal_info/`,
@@ -8,6 +8,8 @@ export const ROUTES = {
     PROVIDER: `${PROVIDER_API}/vehicles/vehicles/`,
     AUCTION:  `${API}/subastas/auction/`,
     AUCTIONS_LAUCHED:`${API}/subastas/list/`,
-    CAR_BY_ID:`${API}/subastas/car_by_id/`
+    CAR_BY_ID:`${API}/subastas/car_by_id/`,
+    CREATE_OFFER:`${API}/subastas/create_offer/`,
+    MY_OFFERS:`${API}/subastas/my_offers/`
 
 };
