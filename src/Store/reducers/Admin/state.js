@@ -21,7 +21,7 @@ export const vehicles = (state = vehiclesInitialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                vehicles: action.vehicles.results,
+                vehicles: action.vehicles,
                 error: null
             }
         case GET_VEHICLES_FAILURE:
