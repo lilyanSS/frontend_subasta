@@ -71,3 +71,33 @@ export const resetOfferCreated = () => (dispatch) => {
     })
 
 }
+
+export const INCREASED_SUPPLY_REQUEST = "INCREASED_SUPPLY_REQUEST";
+export const INCREASED_SUPPLY_RESPONSE = "INCREASED_SUPPLY_RESPONSE";
+export const INCREASED_SUPPLY_FAILURE = "INCREASED_SUPPLY_FAILURE";
+
+export function getMoreSupply({session, id_vehicle}) {
+    let params= {session, id_vehicle};
+    let isJson = false
+    let route = validUrl(ROUTES.GREATER_OFFER, params, isJson);
+    return dispatch => {
+        dispatch({
+            type: INCREASED_SUPPLY_REQUEST,
+            isLoading: true
+        });
+        return axios.post(route.url, route.params, route.headers)
+            .then((response) => {
+                dispatch({
+                    type: INCREASED_SUPPLY_RESPONSE,
+                    offer: response.data,
+                    isLoading: false
+                })
+            })
+            .catch((error) => {
+                dispatch({
+                    type: INCREASED_SUPPLY_FAILURE,
+                    error: error.response.data
+                })
+            })
+    }
+}

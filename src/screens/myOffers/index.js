@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyOffers } from '../../Store/reducers/user/actions';
-import { Form, Col, Row, Card, Container, ListGroup, Button } from 'react-bootstrap'
+import { Form, Col, Row, Card, Container, ListGroup, Button, Table } from 'react-bootstrap'
 import { styles } from './styles';
+
+import { getMoreSupply } from '../../Store/reducers/Auctions/action';
 
 import Avatar from 'react-avatar';
 import moment from 'moment';
@@ -12,6 +14,7 @@ const MyOffers = () => {
   const offers = useSelector(state => state.myOffers.myOffers)
   const dispatch = useDispatch();
   const [myOffers, setMyOffers] = useState([]);
+  const increasedSupply = useSelector(state => state.increasedSupply);
   useEffect(() => {
     let session = user.session;
     dispatch(getMyOffers(session));
@@ -22,6 +25,15 @@ const MyOffers = () => {
       setMyOffers(offers);
     }
   }, [offers])
+
+
+  const getOffer = (id) => {
+    let params = {
+      "session": user.session,
+      "id_vehicle": id
+    }
+    dispatch(getMoreSupply(params));
+  }
 
   return (
     <div style={styles.container}>
@@ -41,17 +53,44 @@ const MyOffers = () => {
                         <Avatar size="200" src={item.vehicle.image} round={true} />
                       </Col>
                       <Col xs={4}>
-                        <h3>{`${item.vehicle.data.brand} - ${item.vehicle.model}`}</h3>
-                        <ListGroup variant="flush">
-                          <ListGroup.Item>Linea : {item.vehicle.line}</ListGroup.Item>
-                          <ListGroup.Item>Estado : {item.vehicle.data.status}</ListGroup.Item>
-                          <ListGroup.Item>Precio inicial : Q {item.vehicle_in_auction.base_price}</ListGroup.Item>
-                          <ListGroup.Item>Fecha de la subasta : {moment(item.vehicle_in_auction.auction_date).format("DD-MM-YYYY")}</ListGroup.Item>
-                        </ListGroup>
+                        <Table responsive>
+                          <thead>
+                            <tr>
+                              <th>{`${item.vehicle.data.brand} - ${item.vehicle.model}`}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Linea : {item.vehicle.line}</td>
+                            </tr>
+                            <tr>
+                              <td>Estado : {item.vehicle.data.status}</td>
+                            </tr>
+                            <tr>
+                              <td>Precio inicial : Q {item.vehicle_in_auction.base_price}</td>
+                            </tr>
+                            <tr>
+                              <td>Fecha de la subasta : {moment(item.vehicle_in_auction.auction_date).format("DD-MM-YYYY")}</td>
+                            </tr>
+                          </tbody>
+                        </Table>
                       </Col>
                       <Col xs={4}>
-                        Mayor Ofertante
-
+                        <Table responsive>
+                          <thead>
+                            <tr>
+                              <th>Mayor precio de oferta.</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{increasedSupply.data.price ? `Q ${increasedSupply.data.price}` : 'Q 00.00'}</td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                        <Button variant="info" onClick={() => getOffer(item.id_vehicle)} style={styles.container}>
+                          Actualizar
+                        </Button>
                       </Col>
                     </Row>
                     <Form>

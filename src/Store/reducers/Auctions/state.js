@@ -1,6 +1,7 @@
 import {
     GET_AUCTIONS_LAUCHED_FAILURE, GET_AUCTIONS_LAUCHED_RESPONSE, GET_AUCTIONS_LAUCHED_REQUEST,
-    CREATE_OFFER_FAILURE, CREATE_OFFER_REQUEST, CREATE_OFFER_RESPONSE, RESET_OFFER_CREATED
+    CREATE_OFFER_FAILURE, CREATE_OFFER_REQUEST, CREATE_OFFER_RESPONSE, RESET_OFFER_CREATED,
+    INCREASED_SUPPLY_FAILURE, INCREASED_SUPPLY_REQUEST, INCREASED_SUPPLY_RESPONSE
 
 } from './action';
 
@@ -70,6 +71,38 @@ export const offerCreated = (state = offerCreatedInitialState, action) => {
                 error:null
             }
         }
+        default:
+            return state;
+    }
+}
+
+const increasedSupplyInitialState = {
+    data: [],
+    error: null,
+    isLoading: false
+};
+
+export const increasedSupply= (state = increasedSupplyInitialState, action) => {
+    switch (action.type) {
+        case INCREASED_SUPPLY_REQUEST:
+            return {
+                ...state,
+                isLoading: true,
+                error: null
+            }
+        case INCREASED_SUPPLY_RESPONSE:
+            return {
+                ...state,
+                isLoading: false,
+                data: action.offer.data.info,
+                error: null
+            }
+        case INCREASED_SUPPLY_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.error
+            }
         default:
             return state;
     }

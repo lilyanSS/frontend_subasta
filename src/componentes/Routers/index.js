@@ -44,6 +44,7 @@ function Routers(props) {
           <PrivateRoutes path='/ofertas' component={Offers} exact />
           <PrivateRoutes path='/details' component={VehiclesDetails} exact />
           <PrivateRoutes path='/misofertas' component={MyOffers} exact />
+          <Route path='/inicio' component={Home} exact/>
         </Switch>
       </div>
     </Router>

@@ -10,6 +10,6 @@ export const ROUTES = {
     AUCTIONS_LAUCHED:`${API}/subastas/list/`,
     CAR_BY_ID:`${API}/subastas/car_by_id/`,
     CREATE_OFFER:`${API}/subastas/create_offer/`,
-    MY_OFFERS:`${API}/subastas/my_offers/`
-
+    MY_OFFERS:`${API}/subastas/my_offers/`,
+    GREATER_OFFER: `${API}/subastas/increased_supply/`
 };
