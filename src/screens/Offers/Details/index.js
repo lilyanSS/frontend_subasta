@@ -66,8 +66,10 @@ const VehiclesDetails = (props) => {
                 session: user.session,
                 price_offered: price,
                 id_vehicle: state.item.car.id,
-                user: user.id
+                user: user.id, 
+                vehicle_in_auction: state.item.id
             }
+
             setError("")
             dispatch(createOffer(params))
         }

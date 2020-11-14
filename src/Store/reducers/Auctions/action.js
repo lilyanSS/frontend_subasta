@@ -36,8 +36,8 @@ export const CREATE_OFFER_REQUEST = "CREATE_OFFER_REQUEST";
 export const CREATE_OFFER_RESPONSE = "CREATE_OFFER_RESPONSE";
 export const CREATE_OFFER_FAILURE = "CREATE_OFFER_FAILURE";
 
-export function createOffer({session, price_offered, id_vehicle,user }) {
-    let params= {session, price_offered, id_vehicle,user};
+export function createOffer({session, price_offered, id_vehicle,user, vehicle_in_auction }) {
+    let params= {session, price_offered, id_vehicle,user, vehicle_in_auction};
     let isJson = false
     let route = validUrl(ROUTES.CREATE_OFFER, params, isJson);
     return dispatch => {
